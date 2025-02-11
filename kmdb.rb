@@ -227,7 +227,7 @@ new_role6.save
 new_role7 = Role.new
 new_role7["movie_id"] = knight["id"]
 new_role7["actor_id"] = ledger["id"]
-new_role7["character_name"] = "JOker"
+new_role7["character_name"] = "Joker"
 new_role7.save
 
 new_role8 = Role.new
@@ -288,6 +288,8 @@ puts ""
 # TODO!
 
 movies = Movie.all
+
+#movies_with_studios = Movie.joins(:studios) .select('movies.title, movies.year_released, movies.rated, movies.studio_id, studios.name as studio_name')
 
 for movie in movies
     title = movie["title"]
