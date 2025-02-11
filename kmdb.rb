@@ -292,11 +292,14 @@ movies = Movie.all
 #movies_with_studios = Movie.joins(:studios) .select('movies.title, movies.year_released, movies.rated, movies.studio_id, studios.name as studio_name')
 
 for movie in movies
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+    studio_name = studio["name"]
+
     title = movie["title"]
     year_released = movie["year_released"]
     rated = movie["rated"]
-    studio_id = movie["studio_id"]
-    movie_output = "#{title} #{year_released} #{rated} #{studio_id}"
+    
+    movie_output = "#{title}  #{year_released}  #{rated}  #{studio_name}"
     puts movie_output
 
 end
@@ -313,10 +316,14 @@ puts ""
 roles = Role.all
 
 for role in roles
-    movie_title = role["movie_id"]
-    actor = role["actor_id"]
+    movie = Movie.find_by({"id" => role["movie_id"]})
+    movie_title = movie["title"]
+
+    actor = Actor.find_by({"id" => role["actor_id"]})
+    actor_name = actor["name"]
+
     character = role["character_name"]
-    movie_output = "#{movie_title} #{actor} #{character}"
+    movie_output = "#{movie_title}  #{actor_name}  #{character}"
     puts movie_output
 
 end
